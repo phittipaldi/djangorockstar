@@ -1,0 +1,41 @@
+
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Django RockStar</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    {% include 'css.html' %}
+
+  </head>
+
+  <body>
+     <div id="loader"></div>
+     {% include 'header.html' %}
+
+     {% include 'slider.html' %}
+
+     {% include 'about.html' %}
+
+     {% include 'aplication.html' %}
+
+     {% include 'faq.html' %}
+
+     {% include 'coach_brief.html' %}
+
+     {% include 'coach_list.html' %}
+
+     {% include 'organizer_list.html' %}
+
+     {% include 'sponsor_list.html' %} 
+
+     {% include 'footer.html' %}
+
+     {% include 'js.html' %}
+
+  </body>
+</html>

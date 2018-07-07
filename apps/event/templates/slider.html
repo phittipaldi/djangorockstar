@@ -1,0 +1,106 @@
+ {% load static %} 
+
+
+
+ <!-- START REVOLUTION SLIDER 5.0 -->
+  <div class="rev_slider_wrapper">
+        <!-- START REVOLUTION SLIDER 5.0 auto mode -->
+        <div id="rev_slider" class="rev_slider"  data-version="5.0">
+        <ul>
+          
+        <!-- SLIDE-3  -->
+        <li data-transition="fade"> 
+        <!-- MAIN IMAGE -->
+        {% if event.portal.picture_slide %} 
+            <img src="{{event.portal.picture_slide.url}}" alt=""  width="1920" height="820" > 
+        {% else %}
+            <img src="{% static 'images/sliders/03.jpg' %}" alt=""  width="1920" height="820" > 
+        {% endif %}
+        
+     
+        
+          <!-- LAYER .1 -->
+        <div class="tp-caption  tp-resizeme rs-parallaxlevel-0" 
+        id="slide-3-layer-1" 
+        data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" 
+        data-y="['center','center','center','center']" data-voffset="['-70','-70','-70','-70']" 
+        data-fontsize="['52','52','42','42']"
+        data-lineheight="['62','62','42','42']"
+        data-width="none"
+        data-height="none"
+        data-color="#fff"
+        data-transform_in="x:500px;opacity:0;s:1500;e:Power4.easeInOut;" 
+        data-transform_out="y:[175%];s:1500;e:Power2.easeInOut;s:1500;e:Power2.easeInOut;" 
+        data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+        data-start="1000" 
+        data-splitin="none" 
+        data-splitout="none" 
+        data-responsive_offset="on" 
+        
+        style="z-index: 10;  font-weight:800; text-align:left; text-transform:uppercase; white-space: nowrap;">
+         Aprende Django<br/> desde cero
+
+        
+        </div>
+   
+        
+        
+        <!-- LAYER .2 -->
+        <div class="tp-caption tp-resizeme rs-parallaxlevel-0" 
+        id="slide-3-layer-2" 
+        data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" 
+        data-y="['center','center','center','center']" data-voffset="['30','50','50','30']" 
+        data-fontsize="['21','21','21','21']"
+        data-lineheight="['32','32','32','32']"
+        data-width="700"
+        data-height="none"
+        data-color="#fdc318"
+        data-transform_in="x:-1000px;y:0px;opacity:0;s:1000;e:Power2.easeInOut;"
+        data-transform_out="y:[175%];s:1500;e:Power2.easeInOut;s:1500;e:Power2.easeInOut;" 
+        data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+        data-start="1000" 
+        data-splitin="none" 
+        data-splitout="none" 
+        data-responsive_offset="on" 
+        
+        style="z-index: 10; font-weight:600; text-transform:none; font-family: 'Roboto', sans-serif; text-align:left;  white-space: nowrap;">
+        Aprende todo lo que necesitas para crear <br/> una aplicación web totalmente gratis.
+        </div>
+        
+        <!-- LAYER .3 -->
+        <div class="tp-caption NotGeneric-CallToAction btn-1 rs-parallaxlevel-0" 
+        id="slide-3-layer-3" 
+        data-x="['left','left','left','left']" data-hoffset="['0','0','0','0']" 
+        data-y="['middle','middle','middle','middle']" data-voffset="['110','110','110','90']" 
+        data-width="none"
+        data-height="none"
+        data-whitespace="nowrap"
+        data-transform_idle="o:1;"
+        data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
+        data-style_hover="c:rgba(255, 255, 255, 1.00);bc:rgba(78, 75, 199, 0.00);cursor:pointer;"
+        
+        data-transform_in="y:top;s:1500;e:Power3.easeInOut;"
+        data-transform_out="opacity:0;s:300;s:300;" 
+        data-mask_in="x:0px;y:0px;" 
+        data-mask_out="x:inherit;y:inherit;" 
+        data-start="1250" 
+        data-splitin="none" 
+        data-splitout="none" 
+        data-actions='[{"event":"click","action":"scrollbelow","offset":"0px"}]'
+        data-responsive_offset="on" 
+        data-responsive="off"
+        
+        style="z-index: 10; white-space:  nowrap;outline:none;box-shadow:none; background-color:#fdc318; border-style:none;border-radius:4px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">¡Aprende más! 
+        </div>
+
+
+        
+        </li>
+        
+        
+        
+        </ul>
+        </div>
+        <!-- END REVOLUTION SLIDER -->
+        </div>
+  <!-- END OF SLIDER WRAPPER -->

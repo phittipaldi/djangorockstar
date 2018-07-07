@@ -1,0 +1,48 @@
+{% load static %} 
+<header id="home">
+  <div class="header-top-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- START LOGO -->
+          <div class="logo rock">
+            <a href="/">
+              {% if event.portal.logo %}
+                <img src="{{event.portal.logo.url}}" alt=""  class="logo-rock img-responsive" >
+              {% else %}
+                Django RockStar
+              {% endif %} 
+              
+            </a>
+          </div>
+          <!-- END LOGO -->
+        </div>
+        <div class="col-md-9">
+          <!-- START MAIN MENU -->
+          <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+              <!-- Logo -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a class="smoth-scroll" href="#home">Evento</a></li>
+                <li><a class="smoth-scroll" href="#aboutus-2">Aplicar</a></li>
+                <li><a class="smoth-scroll" href="#services">Preguntas Frecuentes</a></li>
+                <li><a class="smoth-scroll" href="#testimonials">Sé Mentor</a></li>
+                <li><a class="smoth-scroll" href="#team">Organizadores</a></li>
+                <li><a class="smoth-scroll" href="#portfolio">Patrocinadores</a></li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+          </nav>
+          <!-- END MAIN MENU -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</header>
