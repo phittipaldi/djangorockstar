@@ -161,3 +161,28 @@ class Coach(Person):
                             default=uuid.uuid4,
                             editable=False)
 
+
+class FAQ(models.Model):
+
+    event = models.ForeignKey(Event, related_name='faqs',
+                              on_delete=models.CASCADE)
+    question = models.CharField(max_length=120)
+    answer = models.TextField()
+
+    def __unicode__(self):
+        return '{}'.format(self.question)
+
+
+class Sponsor(models.Model):
+
+    event = models.ForeignKey(Event, related_name='sponsors',
+                              on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=20)
+    link_page = models.CharField(max_length=255)
+    picture = models.ImageField(upload_to="sponsor")
+
+    def __unicode__(self):
+        return '{}'.format(self.name)
