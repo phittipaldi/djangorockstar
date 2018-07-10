@@ -38,8 +38,12 @@
         data-responsive_offset="on" 
         
         style="z-index: 10;  font-weight:800; text-align:left; text-transform:uppercase; white-space: nowrap;">
-         Aprende Django<br/> desde cero
-
+         
+         {% if event.portal.slider.title %}
+            {{ event.portal.slider.title|linebreaksbr}}
+         {% else %}
+            Aprende Django<br/> desde cero
+        {% endif %}
         
         </div>
    
@@ -64,7 +68,13 @@
         data-responsive_offset="on" 
         
         style="z-index: 10; font-weight:600; text-transform:none; font-family: 'Roboto', sans-serif; text-align:left;  white-space: nowrap;">
-        Aprende todo lo que necesitas para crear <br/> una aplicación web totalmente gratis.
+
+        {% if event.portal.slider.subtitle %}
+            {{ event.portal.slider.subtitle|linebreaksbr}}
+         {% else %}
+            Aprende todo lo que necesitas para crear <br/> una aplicación web totalmente gratis.
+        {% endif %}
+        
         </div>
         
         <!-- LAYER .3 -->
@@ -90,7 +100,13 @@
         data-responsive_offset="on" 
         data-responsive="off"
         
-        style="z-index: 10; white-space:  nowrap;outline:none;box-shadow:none; background-color:#fdc318; border-style:none;border-radius:4px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">¡Aprende más! 
+        style="z-index: 10; white-space:  nowrap;outline:none;box-shadow:none; background-color:#fdc318; border-style:none;border-radius:4px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">
+        {% if event.portal.slider.btn_text %}
+            {{ event.portal.slider.btn_text }}
+         {% else %}
+            ¡Aprende más! 
+        {% endif %}
+
         </div>
 
 

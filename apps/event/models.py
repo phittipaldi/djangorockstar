@@ -5,8 +5,20 @@ from . import models_utils
 import uuid
 
 
+class Slider(models.Model):
+    picture = models.ImageField(
+        upload_to="slider", null=True, blank=True)
+    title = models.TextField()
+    subtitle = models.TextField()
+    btn_text = models.CharField(max_length=64)
+
+    def __unicode__(self):
+        return ''.format(self.title)
+
+
 class Portal(models.Model):
     name = models.CharField(max_length=64)
+    slider = models.ForeignKey(Slider, on_delete=models.CASCADE)
     about_us = models.TextField()
     title_aplication_session = models.CharField(max_length=64)
     text_aplication_session = models.TextField()
@@ -43,22 +55,9 @@ class Portal(models.Model):
         return '{}'.format(self.name)
 
 
-class Slider(models.Model):
-    portal = models.ForeignKey(Portal, on_delete=models.CASCADE)
-    picture = models.ImageField(
-        upload_to="slider", null=True, blank=True)
-    title = models.TextField()
-    subtitle = models.TextField()
-    btn_text = models.CharField(max_length=64)
-
-    def __unicode__(self):
-        return ''.format(self.title)
-
-
 class Event(models.Model):
     portal = models.ForeignKey(Portal, on_delete=models.CASCADE)
     name = models.CharField(max_length=64)
-    about = models.TextField()
     about = models.TextField()
     begin_date = models.DateTimeField()
     end_date = models.DateTimeField()
@@ -68,9 +67,8 @@ class Event(models.Model):
     max_quote_participants = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
-    token = models.UUIDField(primary_key=True,
-                             default=uuid.uuid4,
-                             editable=False)
+    uuid = models.UUIDField(default=uuid.uuid4,
+                            editable=True)
     logo = models.ImageField(
         upload_to="event", null=True, blank=True)
 
@@ -171,18 +169,3 @@ class FAQ(models.Model):
 
     def __unicode__(self):
         return '{}'.format(self.question)
-
-
-class Sponsor(models.Model):
-
-    event = models.ForeignKey(Event, related_name='sponsors',
-                              on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=20)
-    link_page = models.CharField(max_length=255)
-    picture = models.ImageField(upload_to="sponsor")
-
-    def __unicode__(self):
-        return '{}'.format(self.name)

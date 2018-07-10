@@ -5,6 +5,10 @@
         <script type="text/javascript">
             var d=new Date();
             document.write(d.getFullYear());
-        </script> | Desarrollada por la comunidad Python Dominicana con &hearts; para todos los que desean aprender Django.</p>
+        </script> 
+        {% autoescape off %}
+            {{event.portal.text_footer}}
+        {% endautoescape %}
+    </p>
   </div>
 </footer>
