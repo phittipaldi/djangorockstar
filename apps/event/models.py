@@ -75,6 +75,11 @@ class Event(models.Model):
     def __unicode__(self):
         return '{}'.format(self.name)
 
+    def display_date(self):
+        text = self.begin_date.strftime('%b %d, %Y, %I:%M%p - ')
+        text = text + self.end_date.strftime('%I:%M%p')
+        return text
+
 
 class ParticipantStatus(models.Model):
     name = models.CharField(max_length=64)

@@ -1,0 +1,27 @@
+{% load static %} 
+<!--Testimonials start-->
+<section id="testimonials" class="testimonials-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h2>{{event.portal.title_coach_session}}</h2>
+        <span class="heading-line"></span> </div>
+      <div class="col-sm-8 col-sm-offset-2">
+        <div id="myCarousel1x" class="carousel slide" data-ride="carousel">
+          <!-- Testimonials slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <blockquote>
+                <h3>{{event.portal.subtitle_coach_session}}</h3>
+                <p>{{event.portal.text_coach_session}}</p>
+                <a href="#" class="main-btn"><h6 class="font-weight">{{event.portal.btn_inscription}}</h6></a>
+              </blockquote>
+            </div>
+          </div>
+          <!-- Left and right controls -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Testimonials end-->

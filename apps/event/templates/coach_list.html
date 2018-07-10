@@ -1,0 +1,47 @@
+{% load static %} 
+<!--Team-->
+ <section id="coach" class="team">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+               <div class="section-title">
+                  <h2 class="font-weight">Nuestros Mentores</h2>
+                  <span class="dots dt-theme margin-bottom-1"></span>
+                  </div>
+                        
+                        <div class="our-team-three">
+                            <div class="team-members row">
+                           
+                            {% for coach in event.coaches.all %}
+
+                                {% if coach.is_verified %}
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="single-member bg-white">
+                                            <div class="single-member-header pos-r">
+                                                {% if coach.picture %}
+                                                    <img src="{{coach.picture.url}}" class="img-responsive" alt="">
+                                                {% else %}
+                                                    <img src="{% static 'images/team/01.jpg' " class="img-responsive" alt="">
+                                                {% endif %}
+                                                <div class="single-member-overlay overlay t-center">
+                                                    <div class="overlay bg-orange alpha-50"></div>
+                                                </div>
+                                            </div>
+                                            <div class="single-member-content p-15">
+                                                
+                                                <p class="font-weight color-y">{{coach.name}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                   
+                </section>
