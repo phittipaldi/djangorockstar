@@ -27,7 +27,7 @@
                             <h1>{{event.portal.title_aplication_session}}</h1>
                             <h5>{{event.portal.subtitle_aplication_session}}</h5>
                             <p class="margin-bottom-2">{{event.portal.text_aplication_session}}</p>
-                            <a href="" class="main-btn"><h6 class="font-weight">{{event.portal.btn_inscription}}</h6></a>
+                            <a href="{% url 'event:participant' event.uuid %}" class="main-btn"><h6 class="font-weight">{{event.portal.btn_inscription}}</h6></a>
                         </div>
                     </div>
                 </div>

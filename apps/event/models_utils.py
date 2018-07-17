@@ -13,7 +13,7 @@ class OperatingSystem(models.Model):
     class Meta:
         ordering = ('-created',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.name
 
 
@@ -27,12 +27,12 @@ class ProgramingLevel(models.Model):
     class Meta:
         ordering = ('id',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.name
 
 
 class Languages(models.Model):
     name = models.CharField(max_length=255)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.name

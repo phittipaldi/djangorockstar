@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from . import models_utils
 import uuid
+from apps.event import managers
 
 
 class Slider(models.Model):
@@ -68,9 +69,10 @@ class Event(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     uuid = models.UUIDField(default=uuid.uuid4,
-                            editable=True)
+                            editable=False)
     logo = models.ImageField(
         upload_to="event", null=True, blank=True)
+    objects = managers.EventManager()
 
     def __unicode__(self):
         return '{}'.format(self.name)
