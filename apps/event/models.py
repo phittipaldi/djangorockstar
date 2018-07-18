@@ -57,7 +57,8 @@ class Portal(models.Model):
 
 
 class Event(models.Model):
-    portal = models.ForeignKey(Portal, on_delete=models.CASCADE)
+    portal = models.ForeignKey(
+        Portal, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=64)
     about = models.TextField()
     begin_date = models.DateTimeField()
