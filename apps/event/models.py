@@ -3,10 +3,23 @@ from __future__ import unicode_literals
 from django.db import models
 from . import models_utils
 import uuid
+from apps.event import managers
+
+
+class Slider(models.Model):
+    picture = models.ImageField(
+        upload_to="slider", null=True, blank=True)
+    title = models.TextField()
+    subtitle = models.TextField()
+    btn_text = models.CharField(max_length=64)
+
+    def __unicode__(self):
+        return ''.format(self.title)
 
 
 class Portal(models.Model):
     name = models.CharField(max_length=64)
+    slider = models.ForeignKey(Slider, on_delete=models.CASCADE)
     about_us = models.TextField()
     title_aplication_session = models.CharField(max_length=64)
     text_aplication_session = models.TextField()
@@ -43,22 +56,9 @@ class Portal(models.Model):
         return '{}'.format(self.name)
 
 
-class Slider(models.Model):
-    portal = models.ForeignKey(Portal, on_delete=models.CASCADE)
-    picture = models.ImageField(
-        upload_to="slider", null=True, blank=True)
-    title = models.TextField()
-    subtitle = models.TextField()
-    btn_text = models.CharField(max_length=64)
-
-    def __unicode__(self):
-        return ''.format(self.title)
-
-
 class Event(models.Model):
     portal = models.ForeignKey(Portal, on_delete=models.CASCADE)
     name = models.CharField(max_length=64)
-    about = models.TextField()
     about = models.TextField()
     begin_date = models.DateTimeField()
     end_date = models.DateTimeField()
@@ -68,14 +68,28 @@ class Event(models.Model):
     max_quote_participants = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
-    token = models.UUIDField(primary_key=True,
-                             default=uuid.uuid4,
-                             editable=False)
+    uuid = models.UUIDField(default=uuid.uuid4,
+                            editable=False)
     logo = models.ImageField(
         upload_to="event", null=True, blank=True)
+    objects = managers.EventManager()
 
-    def __unicode__(self):
+    def __str__(self):
         return '{}'.format(self.name)
+
+    def display_date(self):
+        text = self.begin_date.strftime('%b %d, %Y, %I:%M%p - ')
+        text = text + self.end_date.strftime('%I:%M%p')
+        return text
+
+    @property
+    def get_organizers_emails(self):
+        result = ''
+        organizers = Organizer.objects.filter(
+            event__pk=self.pk)
+        for organizer in organizers:
+            result += str(organizer.email) + ', '
+        return result[:-2]
 
 
 class ParticipantStatus(models.Model):
@@ -99,8 +113,21 @@ class Person(models.Model):
     picture = models.ImageField(upload_to="persons", null=True)
     is_verified = models.BooleanField(default=False)
     is_assistance_confirmated = models.BooleanField(default=False)
+    sex = models.ForeignKey(
+        models_utils.Sex,
+        on_delete=models.CASCADE)
+    uuid = models.UUIDField(primary_key=False,
+                            default=uuid.uuid4,
+                            editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
+        return '{}'.format(self.name)
+
+
+class Organizer(Person):
+    is_the_principal = models.BooleanField(default=False)
+
+    def __str__(self):
         return '{}'.format(self.name)
 
 
@@ -114,9 +141,6 @@ class Participant(Person):
     operation_system = models.ForeignKey(
         models_utils.OperatingSystem,
         on_delete=models.CASCADE)
-    uuid = models.UUIDField(primary_key=False,
-                            default=uuid.uuid4,
-                            editable=False)
 
     class Meta:
         ordering = ('-id',)
@@ -157,9 +181,6 @@ class Coach(Person):
         choices=YES_OR_NO_CHOICES,
         default="KG"
     )
-    uuid = models.UUIDField(primary_key=False,
-                            default=uuid.uuid4,
-                            editable=False)
 
 
 class FAQ(models.Model):
@@ -171,18 +192,3 @@ class FAQ(models.Model):
 
     def __unicode__(self):
         return '{}'.format(self.question)
-
-
-class Sponsor(models.Model):
-
-    event = models.ForeignKey(Event, related_name='sponsors',
-                              on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=20)
-    link_page = models.CharField(max_length=255)
-    picture = models.ImageField(upload_to="sponsor")
-
-    def __unicode__(self):
-        return '{}'.format(self.name)

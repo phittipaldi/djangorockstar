@@ -1,0 +1,28 @@
+{% load static %} 
+<!--About Us-2 Start-->
+<section id="aboutus-2" class="aboutus-2">
+            <div class="container"> 
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="display-table-cell vertical-align-middle padding-twelve-lr">
+                            <h3>{{event.name}}</h3>
+                            <p class="margin-bottom-2">{{event.about}}
+                            <br>
+                            <strong>Lugar:</strong> {{event.place}}
+                            <br>
+                            <strong>Fecha:</strong> 
+                                {{event.display_date}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="display-table-cell vertical-align-middle padding-twelve-lr">
+                            <h3>¿Quiénes somos?</h3>
+                            <p class="margin-bottom-2">{{event.portal.about_us}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<div class="clearfix"></div>
+<!--About Us 2 End-->

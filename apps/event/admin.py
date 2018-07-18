@@ -6,9 +6,12 @@ from . import models
 from . import models_utils
 
 # Register your models here.
+admin.site.register(models.Organizer)
+admin.site.register(models.Participant)
 admin.site.register(models.Portal)
 admin.site.register(models.Slider)
 admin.site.register(models.Event)
 admin.site.register(models_utils.Languages)
+admin.site.register(models_utils.Sex)
 admin.site.register(models_utils.OperatingSystem)
 admin.site.register(models_utils.ProgramingLevel)

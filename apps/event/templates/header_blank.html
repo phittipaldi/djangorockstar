@@ -1,17 +1,13 @@
 {% load static %} 
 <header id="home">
-  <div class="header-top-area">
+  <div class="header-top-area-x">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
           <!-- START LOGO -->
           <div class="logo rock">
             <a href="/">
-              {% if event.logo %}
-                <img src="{{event.logo.url}}" alt=""  class="logo-rock img-responsive" >
-              {% else %}
-                Django RockStar
-              {% endif %} 
+                <img src="{% static 'images/logo_blanco.png' %}" alt=""  class="logo-form img-responsive" >
               
             </a>
           </div>
@@ -28,12 +24,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a class="smoth-scroll" href="#home">Evento</a></li>
-                <li><a class="smoth-scroll" href="#aboutus-2">Aplicar</a></li>
-                <li><a class="smoth-scroll" href="#services">Preguntas Frecuentes</a></li>
-                <li><a class="smoth-scroll" href="#testimonials">Sé Mentor</a></li>
-                <li><a class="smoth-scroll" href="#team">Organizadores</a></li>
-                <li><a class="smoth-scroll" href="#portfolio">Patrocinadores</a></li>
+                <li><a class="smoth-scroll" href="#home">&nbsp;</a></li>
               </ul>
             </div>
             <!-- /.navbar-collapse -->

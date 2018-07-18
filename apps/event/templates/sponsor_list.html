@@ -1,0 +1,57 @@
+{% load static %} 
+<!--Team-->
+<!--Portfolio start-->
+ <section id="portfolio" class="portfolio">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+               <div class="section-title">
+                  <h2 class="font-weight">{{event.portal.title_sponsor_session}}</h2>
+                  <span class="dots dt-theme margin-bottom-1"></span>
+                  {% if event.portal.subtitle_sponsor_session %}
+                    <p class="font-weight">{{event.portal.subtitle_sponsor_session}}</p>
+                  {% endif %}
+                </div>
+                </div>
+            </div>
+          </div>
+      <!-- Portfolio Filters -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <!-- /Portfolio Filters -->
+        <!-- Portfolio Wrap -->
+        <div class="row portfolio-container">
+          
+          {% for sponsor in event.sponsors.all %}
+          <!-- single portfolio -->
+      
+          <div class="col-md-4 col-sm-6 col-xs-12"> 
+            
+              <div class="portfolio-item-content">
+                  <img src="{{sponsor.picture.url}}" class="img-responsive" alt="">
+                  <div class="portfolio-item-description">
+                      <ul class="list-inline text-center">
+                          <li>
+                              <a href="{{sponsor.link_page}}" title="Details" target="_blank">
+                                  <i class="fa fa-link"></i>
+                              </a>
+                          </li>
+                      </ul>
+                      <h6 class="font-weight">{{sponsor.name}}</h6>
+                  </div>
+              </div>
+            <div id="work_id-1" class="mfp-hide work-popup"> <img src="images/gallery-img1.jpg" alt=""> </div>
+          </div>
+          <!-- single portfolio -->
+          {% endfor %}
+      
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Portfolio Wrap -->
+</section>
+<!--Portfolio end-->

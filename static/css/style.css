@@ -217,6 +217,15 @@ color:#FFFFFF;
 .space{
 padding-bottom:40px;
 }
+
+.space-sm{
+padding-bottom:20px;
+}
+
+.space-lg{
+padding-bottom:240px;
+}
+
 .line-height-1{
 line-height:23px;
 }
@@ -1440,6 +1449,12 @@ border:2px solid #d8d8d8;
 .contactus {
     background: #f9f9f9;
 }
+
+.events {
+    background: #f9f9f9;
+}
+
+
 .outer-box {
     width: 85%;
     margin: 0 auto;
@@ -1447,6 +1462,15 @@ border:2px solid #d8d8d8;
 .contact-us ul {
     padding: 0;
 }
+
+.events ul {
+    padding: 0;
+}
+
+.forms ul {
+    padding: 0;
+}
+
 .contact-us li {
     color: #333;
     margin-bottom: 25px;
@@ -1461,6 +1485,17 @@ border:2px solid #d8d8d8;
     color: #666;
     font-weight: 600;
 }
+
+.events li .box {
+    background: #fff;
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.12);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 4px;
+    color: #666;
+    font-weight: 600;
+}
+
 .contact-us .lnr {
     display: block;
     font-size: 30px;
@@ -1493,6 +1528,8 @@ border:2px solid #d8d8d8;
     background: #333;
     color: #fff;
 }/*
+
+
 ================================================
 20. Footer
 ================================================

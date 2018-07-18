@@ -1,0 +1,90 @@
+{% extends "forms/base_form.html" %}
+{% load staticfiles widget_tweaks %}
+{% load staticfiles %}
+
+{% block title %}Django RockStar - Formulario Participante{% endblock %}
+
+
+{% block content %}
+
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+               <div class="section-title">
+                  <h2 class="font-weight">Formulario de Participantes</h2>
+                  <span class="dots dt-theme margin-bottom-1"></span>
+                  <p class="font-weight">{{event.portal.text_form_inscription_participant}}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+            <div class="section contact-us">
+                <div class="container">
+                    <div class="outer-box">
+                        <div class="col-sm-12 form-box clearfix">
+                            <form id="my-form" action='{% url 'event:participant' view.kwargs.uuid %}' method="POST" data-toggle="validator" class="shake scroll-reveal">
+                                {% csrf_token %}
+
+                                <input type="hidden" id="id_event" name="event" value="{{event.pk}}">
+                                <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu nombre?</p>
+                                    {% render_field form.name class="form-control" placeholder="" required='required' data-error="Falta colocar tu nombre" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu correo electrónico?</p>
+                                    {% render_field form.email class="form-control" placeholder="" required='required' data-error="Falta colocar tu correo electronico" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu teléfono celular?</p>
+                                    {% render_field form.phone_number class="form-control" placeholder="" required='required' data-error="Falta colocar tu telefono celular" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿De dónde eres?</p>
+                                    {% render_field form.city class="form-control" placeholder="" required='required' data-error="Falta colocar de donde eres" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu sexo?</p>
+                                    {% render_field form.sex class="form-control selectpicker" placeholder="" required='required' data-error="Falta seleccionar tu sexo" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Qué sistema operativo piensas usar en el taller?</p>
+                                    {% render_field form.operation_system class="form-control selectpicker" placeholder="" required='required' data-error="Falta colocar el sistema operativo que usas" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu nivel actual de experiencia con la programación?</p>
+                                    {% render_field form.programing_level class="form-control" required='required' data-error="Falta colocar tu nivel de experiencia" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>Si marcaste algo más que un principiante, ¿podrías decirnos algo más sobre tu conocimiento de programación?</p>
+                                    {% render_field form.programing_knowledge class="form-control" rows="3" %}
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu ocupación actual?</p>
+                                    {% render_field form.current_ocupation class="form-control" rows="3" %}
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <p>¿Por qué quieres asistir al taller?</p>
+                                    {% render_field form.reason_assistance class="form-control" rows="3" %}
+                                </div>
+                                <div class="col-sm-12" align="right">
+                                     <a class="" href="{% url 'event:event-detail' view.kwargs.uuid %}">Salir</a>
+
+                                      <button class="btn btn-warning" type='submit'>Regístrate</button>
+       
+                                     
+                                    <div id="msgSubmit"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}
