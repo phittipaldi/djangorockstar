@@ -74,13 +74,22 @@ class Event(models.Model):
         upload_to="event", null=True, blank=True)
     objects = managers.EventManager()
 
-    def __unicode__(self):
+    def __str__(self):
         return '{}'.format(self.name)
 
     def display_date(self):
         text = self.begin_date.strftime('%b %d, %Y, %I:%M%p - ')
         text = text + self.end_date.strftime('%I:%M%p')
         return text
+
+    @property
+    def get_organizers_emails(self):
+        result = ''
+        organizers = Organizer.objects.filter(
+            event__pk=self.pk)
+        for organizer in organizers:
+            result += str(organizer.email) + ', '
+        return result[:-2]
 
 
 class ParticipantStatus(models.Model):
@@ -104,8 +113,21 @@ class Person(models.Model):
     picture = models.ImageField(upload_to="persons", null=True)
     is_verified = models.BooleanField(default=False)
     is_assistance_confirmated = models.BooleanField(default=False)
+    sex = models.ForeignKey(
+        models_utils.Sex,
+        on_delete=models.CASCADE)
+    uuid = models.UUIDField(primary_key=False,
+                            default=uuid.uuid4,
+                            editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
+        return '{}'.format(self.name)
+
+
+class Organizer(Person):
+    is_the_principal = models.BooleanField(default=False)
+
+    def __str__(self):
         return '{}'.format(self.name)
 
 
@@ -119,9 +141,6 @@ class Participant(Person):
     operation_system = models.ForeignKey(
         models_utils.OperatingSystem,
         on_delete=models.CASCADE)
-    uuid = models.UUIDField(primary_key=False,
-                            default=uuid.uuid4,
-                            editable=False)
 
     class Meta:
         ordering = ('-id',)
@@ -162,9 +181,6 @@ class Coach(Person):
         choices=YES_OR_NO_CHOICES,
         default="KG"
     )
-    uuid = models.UUIDField(primary_key=False,
-                            default=uuid.uuid4,
-                            editable=False)
 
 
 class FAQ(models.Model):

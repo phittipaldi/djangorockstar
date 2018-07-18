@@ -10,4 +10,5 @@ class ParticipantForm(forms.ModelForm):
         fields = [
             'name', 'email', 'phone_number', 'city', 'birthdate',
             'programing_knowledge', 'current_ocupation', 'reason_assistance',
-            'event', 'operation_system', 'programing_level']
+            'event', 'operation_system', 'programing_level', 'sex']
+        widgets = {'event': forms.HiddenInput(attrs={'required': False})}

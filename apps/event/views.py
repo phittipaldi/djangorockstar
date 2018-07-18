@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.conf import settings
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView, CreateView
 from . import models
 from . import forms
 from django.urls.base import reverse
+from apps.utils import mail
 
 
 class EventDetail(DetailView):
@@ -52,8 +55,24 @@ class ParticipantCreateView(CreateView):
         return {'event': event.pk}
 
     def get_success_url(self):
+        self.send_notification_participant()
+        self.send_notification_staff()
         return reverse('event:participant-success',
                        kwargs={'uuid': self.object.uuid})
+
+    def send_notification_participant(self):
+        subject = 'Registrado en Django RockStar'
+        html = render_to_string("email/new_participant.html", {
+                                'current_domain': settings.CURRENT_DOMAIN})
+
+        mail.send_html_mail(subject, html, [self.object.email])
+
+    def send_notification_staff(self):
+        subject = 'Nuevo Participante registrado'
+        html = render_to_string("email/new_participant_staff.html", {
+                                'current_domain': settings.CURRENT_DOMAIN})
+        emails = self.object.event.get_organizers_emails
+        mail.send_html_mail(subject, html, [emails])
 
 
 class ParticipantSuccessView(DetailView):

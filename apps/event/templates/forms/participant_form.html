@@ -47,6 +47,11 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group col-sm-12">
+                                    <p>¿Cuál es tu sexo?</p>
+                                    {% render_field form.sex class="form-control selectpicker" placeholder="" required='required' data-error="Falta seleccionar tu sexo" %}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
                                     <p>¿Qué sistema operativo piensas usar en el taller?</p>
                                     {% render_field form.operation_system class="form-control selectpicker" placeholder="" required='required' data-error="Falta colocar el sistema operativo que usas" %}
                                     <div class="help-block with-errors"></div>

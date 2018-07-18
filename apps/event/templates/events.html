@@ -31,7 +31,7 @@
                                     <td>{{event.name}}</td>
                                     <td>{{event.place}}</td>
                                     <td>{{event.display_date}}</td>
-                                    <td><a href="{% url 'event-detail' event.uuid %}" class="main-btn">Participar</a></td>
+                                    <td><a href="{% url 'event:event-detail' event.uuid %}" class="main-btn">Participar</a></td>
                                 </tr>
                                 {% endfor %}
                             </table>
