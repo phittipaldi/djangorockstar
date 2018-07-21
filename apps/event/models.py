@@ -19,24 +19,30 @@ class Slider(models.Model):
 
 class Portal(models.Model):
     name = models.CharField(max_length=64)
-    slider = models.ForeignKey(Slider, on_delete=models.CASCADE)
-    about_us = models.TextField()
-    title_aplication_session = models.CharField(max_length=64)
-    text_aplication_session = models.TextField()
+    slider = models.ForeignKey(
+        Slider, on_delete=models.CASCADE, blank=True, null=True)
+    about_us = models.TextField(blank=True, null=True)
+    title_aplication_session = models.CharField(
+        max_length=64, blank=True, null=True)
+    text_aplication_session = models.TextField(blank=True, null=True)
     subtext_aplication_session = models.TextField(blank=True, null=True)
-    title_coach_session = models.CharField(max_length=64)
-    subtitle_coach_session = models.CharField(max_length=120)
-    text_coach_session = models.TextField()
-    title_organizer_session = models.CharField(max_length=64)
+    title_coach_session = models.CharField(
+        max_length=64, blank=True, null=True)
+    subtitle_coach_session = models.CharField(
+        max_length=120, blank=True, null=True)
+    text_coach_session = models.TextField(blank=True, null=True)
+    title_organizer_session = models.CharField(
+        max_length=64, blank=True, null=True)
     subtitle_organizer_session = models.CharField(
         max_length=120, blank=True, null=True)
-    title_sponsor_session = models.CharField(max_length=64)
+    title_sponsor_session = models.CharField(
+        max_length=64, blank=True, null=True)
     subtitle_sponsor_session = models.CharField(max_length=120,
                                                 null=True, blank=True)
-    participant_sucess = models.TextField()
-    participant_warning = models.TextField()
-    coach_success = models.TextField()
-    btn_inscription = models.CharField(max_length=30)
+    participant_sucess = models.TextField(blank=True, null=True)
+    participant_warning = models.TextField(blank=True, null=True)
+    coach_success = models.TextField(blank=True, null=True)
+    btn_inscription = models.CharField(max_length=30, blank=True, null=True)
     text_form_inscription_participant = models.TextField(null=True, blank=True)
     text_form_inscription_sponsor = models.TextField(null=True, blank=True)
 
@@ -60,11 +66,11 @@ class Event(models.Model):
     portal = models.ForeignKey(
         Portal, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=64)
-    about = models.TextField()
+    about = models.TextField(blank=True, null=True)
     begin_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    place = models.CharField(max_length=40)
-    location = models.CharField(max_length=30)
+    place = models.CharField(max_length=40, blank=True, null=True)
+    location = models.CharField(max_length=30, blank=True, null=True)
     is_active = models.BooleanField(default=False)
     max_quote_participants = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -146,7 +152,7 @@ class Participant(Person):
     class Meta:
         ordering = ('-id',)
 
-    def __unicode__(self):
+    def __str__(self):
         return '{}'.format(self.name)
 
 
