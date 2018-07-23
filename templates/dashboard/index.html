@@ -1,0 +1,15 @@
+
+{% extends "dashboard/base.html" %}
+
+{% block title %}Django RockStar - Dashboard{% endblock %}
+
+
+{% block content %}
+    {% include 'dashboard/cards.html' %}
+  
+    {% include 'dashboard/graphics.html' %}
+
+    {% include 'dashboard/progress-table.html' %}
+
+    {% include 'dashboard/ticket-list.html' %}
+{% endblock %}

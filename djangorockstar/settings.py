@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'apps.event',
     'apps.utils',
-    'widget_tweaks',
+    'apps.dashboard',
+    'apps.security',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'djangorockstar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +137,7 @@ CURRENT_DOMAIN = 'http://127.0.0.1:8000'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+LOGIN_URL = '/accounts/login/'
+
+LOGIN_REDIRECT_URL = '/dashboard'

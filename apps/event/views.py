@@ -12,14 +12,14 @@ from apps.utils import mail
 
 class EventDetail(DetailView):
     model = models.Event
-    template_name = "index_event.html"
+    template_name = "event/index_event.html"
     slug_field = 'uuid'
     slug_url_kwarg = 'uuid'
 
 
 class Events(ListView):
     models = models.Event
-    template_name = "events.html"
+    template_name = "event/events.html"
 
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
@@ -39,7 +39,7 @@ class Events(ListView):
 
 class ParticipantCreateView(CreateView):
     form_class = forms.ParticipantForm
-    template_name = 'forms/participant_form.html'
+    template_name = 'event/forms/participant_form.html'
     model = models.Participant
 
     def get_context_data(self, **kwargs):
@@ -62,21 +62,21 @@ class ParticipantCreateView(CreateView):
 
     def send_notification_participant(self):
         subject = 'Registrado en Django RockStar'
-        html = render_to_string("email/new_participant.html", {
+        html = render_to_string("event/email/new_participant.html", {
                                 'current_domain': settings.CURRENT_DOMAIN})
 
         mail.send_html_mail(subject, html, [self.object.email])
 
     def send_notification_staff(self):
         subject = 'Nuevo Participante registrado'
-        html = render_to_string("email/new_participant_staff.html", {
+        html = render_to_string("event/email/new_participant_staff.html", {
                                 'current_domain': settings.CURRENT_DOMAIN})
         emails = self.object.event.get_organizers_emails
         mail.send_html_mail(subject, html, [emails])
 
 
 class ParticipantSuccessView(DetailView):
-    template_name = 'forms/participant_success.html'
+    template_name = 'event/forms/participant_success.html'
     model = models.Participant
     slug_field = 'uuid'
     slug_url_kwarg = 'uuid'

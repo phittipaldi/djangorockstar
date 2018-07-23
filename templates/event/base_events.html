@@ -1,0 +1,35 @@
+
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>
+    {% block title %}{% endblock %}
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    {% include 'event/css.html' %}
+
+  </head>
+
+  <body>
+     <div id="loader"></div>
+     {% include 'event/header_blank.html' %}
+
+      <section id="events" class="events">
+        {% block content %}
+
+        {% endblock %}
+      </section>
+
+      <section id="space-lg" class="space-sm"></section> 
+
+     {% include 'event/footer.html' %}
+
+     {% include 'event/js.html' %}
+
+  </body>
+</html>

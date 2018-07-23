@@ -1,0 +1,46 @@
+{% extends "event/base_events.html" %}
+
+{% block title %}Django RockStar - Eventos Activos{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+            <div class="row">
+               <div class="col-md-12">
+               <div class="section-title">
+                  <h2 class="font-weight">Talleres de Django RockStar Activos</h2>
+                  <span class="dots dt-theme margin-bottom-1"></span>
+                  <p class="font-weight">Haz click en participar para ver más detalle</p>
+                </div>
+              </div>
+            </div>
+        </div>
+            <div class="section contact-us">
+                <div class="container">
+                    <div class="outer-box">
+                        <div class="col-sm-12 form-box clearfix">
+                          
+                            <table class="table">
+                                <th>Evento</th>
+                                <th>Lugar</th>
+                                <th>Fecha</th>
+                                <th>&nbsp;</th>
+                                {% for event in object_list %}
+                                <tr>
+                                    <td>{{event.name}}</td>
+                                    <td>{{event.place}}</td>
+                                    <td>{{event.display_date}}</td>
+                                    <td><a href="{% url 'event:event-detail' event.uuid %}" class="main-btn">Participar</a></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+</div>
+{% endblock %}

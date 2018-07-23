@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('event/', include(('apps.event.urls', 'event'))),
     path('', views.IndexRedirectView.as_view()),
+    path('dashboard/', include(('apps.dashboard.urls', 'dashboard'))),
+    path('accounts/', include('apps.security.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
