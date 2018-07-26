@@ -86,3 +86,10 @@ class ParticipantSuccessView(DetailView):
             ParticipantSuccessView, self).get_context_data(**kwargs)
         context['event'] = self.get_object().event
         return context
+
+
+class ParticipantInvitation(DetailView):
+    template_name = 'event/invitation.html'
+    model = models.Participant
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'

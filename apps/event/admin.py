@@ -8,6 +8,7 @@ from . import models_utils
 # Register your models here.
 admin.site.register(models.Organizer)
 admin.site.register(models.Participant)
+admin.site.register(models.ParticipantStatus)
 admin.site.register(models.Portal)
 admin.site.register(models.Slider)
 admin.site.register(models.Event)

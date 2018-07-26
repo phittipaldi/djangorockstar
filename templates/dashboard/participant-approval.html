@@ -1,0 +1,29 @@
+
+{% extends "dashboard/base.html" %}
+
+{% block title %}Aprobar participante - Django Rockstar{% endblock %}
+
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Participante {{participant.name}}</h1>
+          <p class="card-description">
+            Email: {{participant.email}} <br>
+            Teléfono: {{participant.phone_number}} <br>
+            Sistema Operativo: {{participant.operation_system}}
+          </p>
+          <form id="my-form" action='{% url 'dashboard:participant-approval' view.kwargs.uuid %}' method="POST" >{% csrf_token %}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+
+            <button type="submit" class="btn btn-success mr-2">Aprobar & Enviar Invitación</button>
+            <a href="{% url 'dashboard:participants-pending' %}" class="btn btn-light">Cancelar</a>
+          </form>
+        </div>
+    </div>
+
+{% endblock %}

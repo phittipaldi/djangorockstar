@@ -1,0 +1,23 @@
+
+<div class="btn-group dropdown">
+  <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Opciones
+  </button>
+  <div class="dropdown-menu">
+    {% for option in object.get_options_menu_list %}
+        
+        {% with path=option.url %}
+        <a class="dropdown-item" href="{% url path object.uuid %}" target="{{option.target}}">
+          <i class="fa {{option.icono}}"></i>{{option.name}}</a>
+        {% endwith %}
+
+    {% endfor %}
+  </div>
+
+
+<!--
+
+              {% if not forloop.last %}
+            <li role="separator" class="divider"></li>
+            {% endif %}
+-->

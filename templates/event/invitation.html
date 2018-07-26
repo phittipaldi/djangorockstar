@@ -1,0 +1,132 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Invitación Django Rockstar</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'invitation/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'invitation/guest_invitation.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+
+    <!-- Custom styles for this template 
+    <link href="starter-template.css" rel="stylesheet">-->
+
+    <link href="{% static 'invitation/media_query.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+    
+      <div class="header clearfix">
+      
+        <div class="col-xs-6">
+             <div class="logo_gpc">
+                <img src="{{object.event.logo.url}}" class="img-responsive" alt="{{object.event.name}}" />
+            </div>
+        
+        </div>
+
+        <div class="col-xs-6" align="right">
+	        <div class="logo_evento">
+	            {# <img src="{{object.event.logo.url}}" class="img-responsive" alt="{{object.event.name}}" /> #}
+	        </div>
+	    </div>
+        
+        <!--<h3 class="text-muted center">Puntacana Logo</h3> -->
+      </div>
+    
+      <div class="row">
+      
+        <div class="col-xs-12">
+            <table class="table table-bordered">
+                <col width="40%">
+                <col width="60%">
+                <tr>
+                    <th>NOMBRE PARTICIPANTE:</th>
+                    <td><p class="text-uppercase">{{object.name}}</p></td>
+                </tr>
+                <tr>
+                    <th>CORREO ELECTRONICO:</th>
+                    <td>{{object.email}}</td>
+                </tr>
+            
+            </table>
+
+        
+        </div>
+      
+      </div>
+      
+      <div class="row">
+      
+        <div class="col-xs-12">
+        
+
+            <table class="table table-bordered">
+                <col width="40%">
+                <col width="60%">
+                <tr>
+                    <th>LUGAR:</th>
+                    <td><p class="text-uppercase">{{object.event.place}}</p></td>
+                </tr>
+                <tr>
+                    <th>EVENTO:</th>
+                    <td><p class="text-uppercase">{{object.event.name}}</p></td>
+                </tr>
+                <tr>
+                    <th>FECHA DEL EVENTO:</th>
+                    <td><p class="text-uppercase">{{object.event.display_date}}</p></td>
+                </tr>
+            </table>
+
+        </div>
+      </div>
+      
+      <div class="row">
+      
+        <div class="col-xs-12">
+
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <p class="text-center"><img src="{{object.qrcode.url}}" alt="{{object.pk}}" /></p>
+                    </td>
+                </tr>
+            
+            </table>
+            
+            
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xs-12">
+            <p class="hidden-print hidden-xs text-center"><a id="btn_print" class="btn btn-lg btn-success" href="javascript:window.print()" role="button">Imprimir Invitaci&oacute;n</a></p>
+        </div>
+      </div>
+      
+
+      <footer class="footer hidden-print">
+        <p>&copy; 2018 Python Dominicana.</p>
+      </footer>
+
+    </div> <!-- /container -->
+  </body>
+  
+  
+</html>
+
+
+
