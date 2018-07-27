@@ -87,6 +87,11 @@ def data_default_menu_option():
     )
 
     MenuOptionStatusNotAllowed.objects.get_or_create(
+        option=ReenviarInvitacion,
+        status=enums.ParticipantStatus.desestimado,
+    )
+
+    MenuOptionStatusNotAllowed.objects.get_or_create(
         option=VistaPrelimarInvitacion,
         status=enums.ParticipantStatus.pendiente,
     )

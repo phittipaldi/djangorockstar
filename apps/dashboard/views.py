@@ -16,6 +16,7 @@ class Dashboard(LoginRequiredMixin, TemplateView):
 class ListPendingParticipant(LoginRequiredMixin,
                              GroupsRequiredMixin,
                              ListView):
+
     template_name = 'dashboard/pending-participants.html'
     model = models.Participant
     user_check_failure_path = '/accounts/permission_denied/'
