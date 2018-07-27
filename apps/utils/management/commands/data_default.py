@@ -6,3 +6,4 @@ from apps.utils import initial_data
 class Command(BaseCommand):
     def handle(self, *args, **option):
         initial_data.data_default_event()
+        initial_data.data_default_menu_option()

@@ -4,6 +4,9 @@ from django.db import models
 from . import models_utils
 import uuid
 from apps.event import managers
+from django.contrib.auth.models import User
+from .services.participant import ParticipantService
+from django.urls.base import reverse
 
 
 class Slider(models.Model):
@@ -13,7 +16,7 @@ class Slider(models.Model):
     subtitle = models.TextField()
     btn_text = models.CharField(max_length=64)
 
-    def __unicode__(self):
+    def __str__(self):
         return ''.format(self.title)
 
 
@@ -101,8 +104,10 @@ class Event(models.Model):
 
 class ParticipantStatus(models.Model):
     name = models.CharField(max_length=64)
+    color = models.CharField(max_length=30, null=True, blank=True)
+    order = models.CharField(max_length=1, default='A')
 
-    def __unicode__(self):
+    def __str__(self):
         return '{}'.format(self.name)
 
 
@@ -117,7 +122,7 @@ class Person(models.Model):
     city = models.CharField(max_length=32)
     birthdate = models.CharField(max_length=2, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    picture = models.ImageField(upload_to="persons", null=True)
+    picture = models.ImageField(upload_to="persons", null=True, blank=True)
     is_verified = models.BooleanField(default=False)
     is_assistance_confirmated = models.BooleanField(default=False)
     sex = models.ForeignKey(
@@ -132,13 +137,17 @@ class Person(models.Model):
 
 
 class Organizer(Person):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True, blank=True)
     is_the_principal = models.BooleanField(default=False)
 
     def __str__(self):
         return '{}'.format(self.name)
 
 
-class Participant(Person):
+class Participant(Person, ParticipantService):
     programing_level = models.ForeignKey(
         models_utils.ProgramingLevel,
         on_delete=models.CASCADE)
@@ -148,9 +157,20 @@ class Participant(Person):
     operation_system = models.ForeignKey(
         models_utils.OperatingSystem,
         on_delete=models.CASCADE)
+    status = models.ForeignKey(
+        ParticipantStatus,
+        on_delete=models.CASCADE,
+        null=True, blank=True)
+    qrcode = models.ImageField(upload_to='qrcode', blank=True, null=True)
+    barcode = models.FileField(upload_to='barcode', blank=True, null=True)
+    barcode_value = models.CharField(max_length=30, blank=True, null=True)
 
     class Meta:
         ordering = ('-id',)
+
+    def get_success_url(self, **kwargs):
+            return reverse("event:participant-invitation",
+                           kwargs={'uuid': self.uuid})
 
     def __str__(self):
         return '{}'.format(self.name)
@@ -199,3 +219,12 @@ class FAQ(models.Model):
 
     def __unicode__(self):
         return '{}'.format(self.question)
+
+
+class ParticipantApproval(models.Model):
+    participant = models.ForeignKey(Participant,
+                                    on_delete=models.CASCADE)
+    user = models.ForeignKey(User,
+                             blank=True, null=True,
+                             on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, editable=False)

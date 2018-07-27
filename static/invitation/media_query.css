@@ -1,0 +1,30 @@
+
+@media print {
+    .container {
+      width: auto;
+    }
+    
+    .jumbotron{padding:30px 15px;margin-bottom:30px;color:inherit;background-color:black}
+
+    
+    .jumbotron{
+		.jumbotron {
+		  text-align: center;
+		  border-bottom: 1px solid #e5e5e5;
+		}
+		.jumbotron .btn {
+		  padding: 14px 24px;
+		  font-size: 21px;
+		}
+    }
+}
+
+@media print {
+	
+
+    h1 {color:#000 }
+	
+}
+
+
+
