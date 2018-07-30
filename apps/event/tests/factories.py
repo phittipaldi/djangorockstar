@@ -81,7 +81,7 @@ class ParticipantFactory(factory.django.DjangoModelFactory):
 
     name = faker.name()
     email = faker.email()
-    phone_number = factory.LazyAttribute(lambda _: faker.word())
+    phone_number = factory.LazyFunction(faker.phone_number)
     sex = factory.SubFactory(SexFactory)
     programing_level = factory.SubFactory(ProgramingLevelFactory)
     reason_assistance = faker.text()
@@ -97,6 +97,6 @@ class OrganizerFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     name = faker.name()
     email = faker.email()
-    phone_number = factory.LazyAttribute(lambda _: faker.word())
+    phone_number = factory.LazyFunction(faker.phone_number)
     sex = factory.SubFactory(SexFactory)
     event = factory.SubFactory(EventFactory)
