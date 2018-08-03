@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'email_log',
     'apps.event',
     'apps.utils',
     'apps.dashboard',
@@ -135,8 +136,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CURRENT_DOMAIN = 'http://127.0.0.1:8000'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+EMAIL_BACKEND = 'email_log.backends.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_URL = '/accounts/login/'
 

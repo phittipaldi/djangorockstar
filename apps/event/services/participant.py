@@ -31,11 +31,26 @@ class ParticipantService(object):
             self.generate_barcode()
             self.generate_qrcode()
 
+    def set_status_desestimado(self):
+        status_desestimado = models.ParticipantStatus.objects.get(
+            name=ParticipantStatus.desestimado)
+        self.status = status_desestimado
+        self.save()
+
     def send_invitation(self, email):
         subject = 'Django Rockstar Invitación'
         html = render_to_string("event/email/participant_invitation.html", {
                                 'current_domain': settings.CURRENT_DOMAIN,
                                 'participant': self})
+
+        mail.send_html_mail(subject, html, [email])
+
+    def send_cancel_participant(self, email):
+        subject = 'Django Rockstar - Participante Desestimado'
+        html = render_to_string(
+            "event/email/participant_cancel_participant.html",
+            {'current_domain': settings.CURRENT_DOMAIN,
+             'participant': self})
 
         mail.send_html_mail(subject, html, [email])
 

@@ -228,3 +228,13 @@ class ParticipantApproval(models.Model):
                              blank=True, null=True,
                              on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, editable=False)
+
+
+class ParticipantCancel(models.Model):
+    participant = models.ForeignKey(Participant,
+                                    on_delete=models.CASCADE)
+    note = models.TextField()
+    user = models.ForeignKey(User,
+                             blank=True, null=True,
+                             on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, editable=False)

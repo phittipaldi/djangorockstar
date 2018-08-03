@@ -1,6 +1,7 @@
 from . import base
 from apps.event.tests import factories
-from apps.dashboard.models import MenuOption
+from django.urls.base import reverse
+from apps.event.models import Participant
 
 
 class ParticipantListViewTest(base.UnitTest):
@@ -14,7 +15,8 @@ class ParticipantListViewTest(base.UnitTest):
         participant3 = factories.ParticipantFactory(
             status=self.status_desestimado, event=self.event)
 
-        response = self.client.get(self.url_participant_list)
+        url = reverse('dashboard:participants-pending')
+        response = self.client.get(url)
 
         self.assertEqual(200, response.status_code)
 
@@ -27,7 +29,9 @@ class ParticipantListViewTest(base.UnitTest):
         participant1 = factories.ParticipantFactory(
             status=self.status_pendiente, event=self.other_event)
 
-        response = self.client.get(self.url_participant_list)
+        url = reverse('dashboard:participants-pending')
+
+        response = self.client.get(url)
 
         self.assertEqual(200, response.status_code)
 
@@ -62,3 +66,20 @@ class ParticipantListViewTest(base.UnitTest):
 
         for current in participant1.get_options_menu_list:
             self.assertEqual(current.name, display_options[current.name])
+
+    def test_approval_participant(self):
+        participant1 = factories.ParticipantFactory(
+            status=self.status_pendiente, event=self.event)
+
+        data = {'participant': participant1.pk}
+
+        url = reverse('dashboard:participant-approval',
+                      kwargs={'uuid': participant1.uuid})
+
+        response = self.client.post(url, data)
+
+        participant1 = Participant.objects.get(pk=participant1.pk)
+
+        self.assertEqual(participant1.status.pk, self.status_aprobado.pk)
+
+        self.assertEqual(response.status_code, 302)

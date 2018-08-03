@@ -1,0 +1,31 @@
+
+{% extends "dashboard/base.html" %}
+{% load staticfiles widget_tweaks %}
+
+{% block title %}Desestimar participante - Django Rockstar{% endblock %}
+
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Participante {{participant.name}}</h1>
+
+          <form id="my-form" action='{% url 'dashboard:participant-cancel' view.kwargs.uuid %}' method="POST" >{% csrf_token %}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+
+           <div class="form-group col-sm-12">
+                <p>Registre una razón porque esta desestimando este participante:</p>
+                {% render_field form.note class="form-control" rows="3" %}
+            </div>
+
+            <button type="submit" class="btn btn-danger mr-2">Desestimar Participante</button>
+            <a href="{% url 'dashboard:participants-pending' %}" class="btn btn-light">Cancelar</a>
+          </form>
+        </div>
+    </div>
+
+{% endblock %}

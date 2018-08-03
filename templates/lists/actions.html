@@ -7,7 +7,7 @@
     {% for option in object.get_options_menu_list %}
         
         {% with path=option.url %}
-        <a class="dropdown-item" href="{% url path object.uuid %}" target="{{option.target}}">
+        <a class="dropdown-item {{option.css_class}}" href="{% url path object.uuid %}" target="{{option.target}}">
           <i class="fa {{option.icono}}"></i>{{option.name}}</a>
         {% endwith %}
 

@@ -11,7 +11,8 @@
             <div class="col-lg-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h1 class="card-title">Listado Participantes</h1>
+                  <h1 class="card-title">Listado Participantes ( <small>{{event.location}}</small> )</h1>
+
                   {% if participant %}
                     <div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert">×</button>
@@ -71,3 +72,22 @@
 
 
 {% endblock %}
+
+{% block js_extra %}
+  
+
+  <script src="{% static 'dashboard/modals/modal_resend_email.js' %}"></script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $(".btn-submit").click(function(){
+            $('body').loading({
+              stoppable: true
+            });
+        }); 
+    });
+  </script>
+ 
+{% endblock %}
+

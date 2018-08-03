@@ -14114,7 +14114,7 @@ input:focus {
 /* Navbar */
 .navbar.default-layout {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(120deg, #00e4d0, #5983e8);
+  background: linear-gradient(120deg, #999, #FFCC00);
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
@@ -14238,7 +14238,8 @@ input:focus {
     .navbar.default-layout .navbar-brand-wrapper {
       width: 75px; }
       .navbar.default-layout .navbar-brand-wrapper .brand-logo {
-        display: none; }
+        display: none;
+        width: 120px; }
       .navbar.default-layout .navbar-brand-wrapper .brand-logo-mini {
         display: inline-block; }
   .navbar-collapse {
@@ -14380,9 +14381,9 @@ address p {
 .card-title {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
-  color: #404852;
+  color: #FFCC00;
   margin-bottom: 22px;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: capitalize; }
   .rtl .card-title {
     text-align: right; }
@@ -14497,7 +14498,7 @@ pre {
   font-size: calc(13px - 0.05rem);
   font-family: "Poppins", sans-serif; }
   .footer a {
-    color: #00ce68;
+    color: #FFCC00;
     font-size: inherit; }
   @media (max-width: 991px) {
     .footer {

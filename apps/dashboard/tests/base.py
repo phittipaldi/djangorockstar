@@ -2,7 +2,6 @@
 from django.test import TestCase
 from apps.event.tests import factories
 from apps.event import enums
-from django.urls.base import reverse
 from apps.security.tests.factories import GroupFactory
 from apps.dashboard.tests.factories import (ListFactory, MenuOptionFactory,
                                             MenuOptionStatusNotAllowedFactory)
@@ -14,7 +13,6 @@ class UnitTest(TestCase):
 
         self.event = factories.EventFactory()
 
-        self.setUrls()
         self.setStatusParticipant()
         self.setAuth()
         self.setOptionsDisplay()
@@ -38,9 +36,6 @@ class UnitTest(TestCase):
             name=enums.ParticipantStatus.aprobado)
         self.status_desestimado = factories.ParticipantStatusFactory(
             name=enums.ParticipantStatus.desestimado)
-
-    def setUrls(self):
-        self.url_participant_list = reverse('dashboard:participants-pending')
 
     def setOptionsDisplay(self):
         self.lista = ListFactory(

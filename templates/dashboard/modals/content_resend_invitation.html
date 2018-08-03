@@ -1,0 +1,23 @@
+
+<div class="row">
+    <div class="col-md-12">
+
+          <form action='{% url 'dashboard:resend-invitation' view.kwargs.uuid %}' method="POST">
+            {% csrf_token %}
+
+          {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+          {% endfor %}
+
+          <div class="form-group">
+            <input type="email" class="form-control" id="id_email" name='email' placeholder="Introduzca un correo electrónico" value="{{participant.email}}">
+          </div>
+          <div align="right">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-success mr-2">Reenviar Invitación</button>
+          </div>
+        </form>
+
+    </div>
+</div>
+

@@ -57,8 +57,9 @@ def data_default_menu_option():
     ReenviarInvitacion = MenuOption.objects.get_or_create(
         name='Reenviar Invitación',
         list=ParticipantList,
-        url='event:resend-invitation',
+        url='dashboard:resend-invitation',
         target='_self',
+        css_class='resend-email',
         icono='fa-envelope-o send-by-mail',
         order=3
     )[0]

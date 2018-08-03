@@ -15,6 +15,11 @@
 </head>
 
 <body>
+
+  {% with modal_title='Reenviar Invitación'%}
+      {% include 'dashboard/modals/modal_resend_invitation.html' %}
+  {% endwith %}
+
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     {% include 'dashboard/navbar.html' %}

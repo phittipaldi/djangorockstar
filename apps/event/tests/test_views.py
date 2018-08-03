@@ -29,4 +29,3 @@ class ParticipantViewTest(TestCase):
         response = self.client.post('/event/' + uuid + '/participant/', data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(models.Participant.objects.count(), 1)
-        # self.assertTemplateUsed(response, "forms/participant_form.html")
