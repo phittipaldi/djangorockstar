@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Invitación Django Rockstar</title>
+    <title>Preview Formulario Participante - Django Rockstar</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'invitation/bootstrap.min.css' %}" rel="stylesheet">
@@ -39,10 +39,10 @@
         </div>
 
         <div class="col-xs-6" align="right">
-	        <div class="logo_evento">
-	            {# <img src="{{object.event.logo.url}}" class="img-responsive" alt="{{object.event.name}}" /> #}
-	        </div>
-	    </div>
+            <div class="logo_evento">
+                {# <img src="{{object.event.logo.url}}" class="img-responsive" alt="{{object.event.name}}" /> #}
+            </div>
+        </div>
         
         <!--<h3 class="text-muted center">Puntacana Logo</h3> -->
       </div>
@@ -61,6 +61,18 @@
                     <th>CORREO ELECTRONICO:</th>
                     <td>{{object.email}}</td>
                 </tr>
+                <tr>
+                    <th>TELEFONO:</th>
+                    <td>{{object.phone_number}}</td>
+                </tr>
+                <tr>
+                    <th>CIUDAD:</th>
+                    <td>{{object.city}}</td>
+                </tr>
+                <tr>
+                    <th>SEXO:</th>
+                    <td>{{object.sex}}</td>
+                </tr>
             
             </table>
 
@@ -78,51 +90,40 @@
                 <col width="40%">
                 <col width="60%">
                 <tr>
-                    <th>LUGAR:</th>
-                    <td><p class="text-uppercase">{{object.event.place}}</p></td>
+                    <th>SISTEMA OPERATIVO:</th>
+                    <td>{{object.operation_system}}</td>
                 </tr>
                 <tr>
-                    <th>EVENTO:</th>
-                    <td><p class="text-uppercase">{{object.event.name}}</p></td>
+                    <th>NIVEL DE PROGRACION:</th>
+                    <td>{{object.programing_level}}</td>
+                </tr>
+                {% if object.programing_knowledge %}
+                <tr>
+                    <th>CONOCIMIENTO DE PROGRACION:</th>
+                    <td>{{object.programing_knowledge}}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th>OCUPACION:</th>
+                    <td>{{object.current_ocupation}}</td>
                 </tr>
                 <tr>
-                    <th>FECHA DEL EVENTO:</th>
-                    <td><p class="text-uppercase">{{object.event.display_date}}</p></td>
+                    <th>RAZON DE ASISTENCIA:</th>
+                    <td>{{object.reason_assistance}}</td>
                 </tr>
             </table>
 
         </div>
       </div>
-      
-      <div class="row">
-      
-        <div class="col-xs-12">
-
-            <table class="table table-bordered">
-                <tr>
-                    <td>
-                        <p class="text-center"><img src="{{object.qrcode.url}}" alt="{{object.pk}}" /></p>
-                    </td>
-                </tr>
-            
-            </table>
-            
-            
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-xs-12">
-            <p class="hidden-print hidden-xs text-center"><a id="btn_print" class="btn btn-lg btn-success" href="javascript:window.print()" role="button">Imprimir Invitaci&oacute;n</a></p>
-        </div>
-      </div>
+    
       
 
       <footer class="footer hidden-print">
         <p>Copyright © 
                 <script>document.write(new Date().getFullYear())</script>
-              <a href="http://www.djangorockstar.com.do/" target="_blank">Django RockStar</a>. Todos los derechos reservados.</p>
-      </footer>
+              <a href="http://www.djangorockstar.com.do/" target="_blank">Django RockStar</a>. Todos los derechos reservados.
+        </p>
+    </footer>
 
     </div> <!-- /container -->
   </body>

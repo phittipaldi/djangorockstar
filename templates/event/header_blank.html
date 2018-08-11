@@ -5,9 +5,17 @@
       <div class="row">
         <div class="col-md-3">
           <!-- START LOGO -->
-          <div class="logo rock">
+          <div class="logo-rock">
+
             <a href="/">
-                <img src="{% static 'images/logo_blanco.png' %}" alt=""  class="logo-form img-responsive" >
+
+              {% if event.logo %}
+                <img src="{{event.logo.url}}" alt=""  class="logo-form img-responsive" >
+              {% else %}
+                
+                <img src="{% static 'images/logo_django_small.png' %}" class="logo-form img-responsive">
+
+              {% endif %} 
               
             </a>
           </div>

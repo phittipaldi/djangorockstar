@@ -14,10 +14,10 @@ urlpatterns = [
     path('participant/<uuid:uuid>/invitation/',
          views.ParticipantInvitation.as_view(),
          name='participant-invitation'),
+    path('participant/<uuid:uuid>/preview-form/',
+         views.ParticipantPreviewForm.as_view(),
+         name='participant-formpreview'),
     path('participant/<uuid:uuid>/resend-invitation/',
          views.ParticipantInvitation.as_view(),
          name='resend-invitation'),
-    path('participant/<uuid:uuid>/resend-invitation/',
-         views.ParticipantInvitation.as_view(),
-         name='participant-formpreview'),
 ]

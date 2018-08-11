@@ -30,7 +30,7 @@ class Events(ListView):
         else:
             if self.object_list.count() == 1:
                 event = self.object_list[0]
-                return redirect('event-detail', uuid=event.uuid)
+                return redirect('event:event-detail', uuid=event.uuid)
 
     def get_queryset(self):
         queryset = self.models.objects.all_active_events()
@@ -90,6 +90,13 @@ class ParticipantSuccessView(DetailView):
 
 class ParticipantInvitation(DetailView):
     template_name = 'event/invitation.html'
+    model = models.Participant
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
+
+
+class ParticipantPreviewForm(DetailView):
+    template_name = 'event/participant_form_preview.html'
     model = models.Participant
     slug_field = 'uuid'
     slug_url_kwarg = 'uuid'
